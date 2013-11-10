@@ -14,3 +14,7 @@ tabSize          = 2
 softTabs         = true
 tabSize          = 2
 
+[ * ]
+softTabs         = true
+tabSize          = 2
+
