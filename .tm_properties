@@ -1,0 +1,16 @@
+[ source.ruby ]
+softTabs         = true
+tabSize          = 2
+
+[ source.sass ]
+softTabs         = true
+tabSize          = 2
+
+[ source.haml ]
+softTabs         = true
+tabSize          = 2
+
+[ source.html ]
+softTabs         = true
+tabSize          = 2
+
