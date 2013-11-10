@@ -1,5 +1,6 @@
 @import "mixins.sass"
 @import "colors.sass"
+@import "fonts.sass"
 
 // Variables
 
@@ -19,7 +20,7 @@ $border-style: 1px dashed $border-color
   text-shadow: 0 2px 3px #ddd
 
 body
-  font: ($base-font * 1.05) Georgia, serif
+  font: ($base-font * 1.05) $body-fonts
   line-height: $vertical-rhythm
   color: $base-color
 
@@ -37,7 +38,7 @@ header[role=banner]
     font-size: 1em
 
 h1, h2, h3, h4, h5, h6
-  font-family: Georgia, serif
+  font-family: $header-fonts
 h1
   @include adjust-font-size($h1-scale, 0.6, 0.4)
   font-weight: normal
@@ -70,6 +71,7 @@ blockquote
 pre
   padding: ($vertical-rhythm / 2) 1em
   overflow: auto
+  font-family: $code-fonts
 
 img
   border: none
