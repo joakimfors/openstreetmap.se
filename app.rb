@@ -21,4 +21,10 @@ module Nesta
 
     # Add new routes here.
   end
+
+  class Page
+    def read_more
+      metadata('read more') || 'Läs mer'
+    end
+  end
 end
