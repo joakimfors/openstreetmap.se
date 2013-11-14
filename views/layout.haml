@@ -9,6 +9,8 @@
     %title= @title
     <!--[if ! lte IE 6]><!-->
     %link(href="#{url('/css/master.css')}" media="screen" rel="stylesheet")
+    %script(src="/js/jquery.js")
+    %script(src="/js/utils.js")
     <!--<![endif]-->
     /[if lte IE 6]
       %link(rel="stylesheet" href="http://universal-ie6-css.googlecode.com/files/ie6.1.1.css" media="screen, projection")
@@ -19,6 +21,28 @@
     = haml :analytics, :layout => false
   %body
     #container
-      = haml :header, :layout => false
-      = yield
-      = haml :footer, :layout => false
+      #header.wrapper
+        = haml :header, :layout => false
+      #header-space
+      #main.wrapper
+        = yield
+      #footer.wrapper
+        = haml :footer, :layout => false
+
+    :javascript
+      $(document).ready(function() {
+        window.header = document.getElementById('header');
+        window.header.top_offset = window.header.getBoundingClientRect().top;
+        window.container = document.getElementById('container');
+
+        $(window).scroll(function() {
+          var header_top = window.container.getBoundingClientRect().top + window.header.top_offset;
+          if (header_top <= 0 && window.header.style.position != 'fixed') {
+            window.header.style.position = 'fixed';
+            window.header.style.top = '-' + window.header.top_offset + 'px';
+          } else if (header_top > 0 && window.header.style.position != 'absolute') {
+            window.header.style.position = 'absolute';
+            window.header.style.top = '';
+          }
+        });
+      });

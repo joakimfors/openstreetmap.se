@@ -18,7 +18,7 @@ $base-vertical-margin: 1.75em
   $average-margin: $base-vertical-margin / $scale
   margin-top: $average-margin * $top-weight
   margin-bottom: $average-margin * $bottom-weight
-  
+
   $line-height: $vertical-rhythm / $scale
   @if $line-height < 1
     line-height: $line-height * 2
@@ -37,3 +37,9 @@ $base-vertical-margin: 1.75em
   -o-transition: $definition
   -webkit-transition: $definition
   transition: $definition
+
+@mixin box-shadow($color, $hoff, $voff, $blur, $spread)
+  -moz-box-shadow: $hoff $voff $blur $spread $color
+  -webkit-box-shadow: $hoff $voff $blur $spread $color
+  box-shadow: $hoff $voff $blur $spread $color
+

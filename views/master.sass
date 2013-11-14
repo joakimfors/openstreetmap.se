@@ -2,19 +2,31 @@
 @import "colors.sass"
 @import "fonts.sass"
 
+//
 // Variables
+//
 
+$container-width: 54em
 $content-width: 37em
 
 $border-style: 1px dashed $border-color
 
+$logo-height: 5 * $vertical-rhythm
+$header-margin: 3 * $vertical-rhythm
+$header-padding: 1 * $vertical-rhythm
+$header-height: $logo-height + 2 * $header-padding
+
+//
 // Reset
+//
 
 *
   margin: 0
   padding: 0
 
+//
 // Typography
+//
 
 @mixin text-shadow
   text-shadow: 0 2px 3px #ddd
@@ -76,22 +88,30 @@ pre
 img
   border: none
 
+nav.primary
+  li
+    line-height: $logo-height
+  a
+    line-height: $logo-height
+
 nav.breadcrumb
-  margin-top: $vertical-rhythm
+  //margin-top: $vertical-rhythm
+  margin-top: 0
   color: $meta-color
   padding: 0.5em 0
 
-  font-size: 0.909em
+  ul
+    font-size: 0.909em
 
+//
 // Layout
+//
 
 article, aside, footer, header, nav, section
   display: block
 
 div#container
-  width: 54em
-  margin: 0 auto
-  padding: 1em 1em 0 1em
+  position: relative
 
   div#content
     position: relative
@@ -108,12 +128,69 @@ div#container
     clear: both
     color: $meta-color
     @include adjust-font-size($base-scale)
+
     p
       width: $content-width
       margin: 0
       padding: 1em 0
 
+div#header-space
+  position: relative
+  height: 2 * $header-margin + $header-height
+  margin: 0
+  padding: 0
+
+div#header
+  z-index: 10
+  width: 100%
+  position: absolute
+  margin-top: $header-margin
+
+header[role=banner]
+  padding-top: $header-padding
+  padding-bottom: $header-padding
+
+  hgroup
+    display: block
+    float: left
+    width: $logo-height
+    height: $logo-height
+    overflow: hidden
+    background-image: url("/images/osm_logo.svg")
+    background-size: $logo-height $logo-height
+    background-repeat: no-repeat
+    background-position: center
+
+    h1,h2
+      margin-left: -9999px
+
+div#footer
+  margin-top: $header-margin
+  margin-bottom: 0
+
+div#container
+  position: relative
+  //padding-top: 2 * $header-margin + $header-height
+
+.container
+  width: $container-width
+  margin: 0 auto
+  padding: 0
+
+.clearfix
+  *zoom: 1
+
+  &:before,
+  &:after
+    content: " "
+    display: table
+  &:after
+    clear: both
+
+
+//
 // The visuals
+//
 
 a
   border-bottom: 1px dotted $link-color
@@ -130,6 +207,31 @@ a
     color: $active-link-color
     border-bottom-color: $active-link-color
 
+div.wrapper
+  background: $background-color
+  @include box-shadow(rgba(0,0,0,0.2), 0, 0, 3em, 0)
+
+nav.primary
+  ul
+    margin: 0 0 0 2em
+    display: block
+    float: left
+  li
+    display: block
+    float: left
+    list-style: none
+    &:last-child
+      border: none
+  a
+    display: block
+    padding: 0 2em
+    color: $nav-link-color
+  &:hover a
+    color: $link-color
+  a:hover
+    color: $hover-link-color
+
+
 nav.breadcrumb
   ul
     margin: 0
@@ -141,22 +243,19 @@ nav.breadcrumb
     &:last-child::after
       content: ""
 
+nav.primary,
 nav.breadcrumb,
 nav.categories,
 div.feed,
 article p.meta
   a
     color: $nav-link-color
+    border-bottom-color: $background-color
   &:hover a
     color: $link-color
   a:hover
     color: $hover-link-color
 
-nav.categories,
-div.feed,
-article p.meta
-  a
-    border-bottom-color: $background-color
 
 article p.meta
   a
@@ -168,7 +267,7 @@ article h1 a
   border-bottom: none
 
 body
-  background: $background-color
+  background: fixed 0 0 $background-color url("/images/background2.jpg")
 
 article
   img
@@ -187,7 +286,8 @@ article
       padding: 0
 
   footer
-    border-top: $border-style
+    //border-top: $border-style
+    background: darken($background-color, 2%)
     p.meta
       @include adjust-font-size(0.909, 0.1, 1.9)
       font-style: italic
@@ -196,7 +296,7 @@ article
 // Pages of content
 article[role="main"]
   h1, h2
-    @include text-shadow
+    font-weight: bold
 
   div#disqus_thread
     img

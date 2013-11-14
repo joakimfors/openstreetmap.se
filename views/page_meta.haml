@@ -1,16 +1,18 @@
 - if page.date
   %footer
     %p.meta
-      Published
+      Publicerad
       - if page.date
-        on
         %time(datetime="#{page.date.to_s}" pubdate=true)= format_date(page.date)
       - if (! page.categories.empty?)
-        in
+        i
         - page.categories.each do |category|
           - if category != page.categories[-1]
             = succeed ',' do
               %a(href="#{url(category.abspath)}")= category.heading
           - else
             %a(href="#{url(category.abspath)}")= category.heading
+      - if page.metadata(:author)
+        av
+        = page.metadata(:author)
 
