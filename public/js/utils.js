@@ -57,28 +57,28 @@ function getDocHeight() {
 }
 
 
-$(document).ready(function() {
-  /*console.log(getPageScroll());
-  console.log(getPageHeight());
-  console.log(getDocHeight());*/
+/*$(document).ready(function() {
+  //console.log(getPageScroll());
+  //console.log(getPageHeight());
+  //console.log(getDocHeight());
 
   $(window).scroll(function() {
-    /*console.log(getPageScroll());
-    console.log(getPageHeight());
-    console.log(getDocHeight());
+    //console.log(getPageScroll());
+    //console.log(getPageHeight());
+    //console.log(getDocHeight());
 
-    var viewport_height = getPageHeight();
-    var body_offset = document.body.getBoundingClientRect().top;
-    var body_height = document.body.getBoundingClientRect().height;
-    var b = document.body.getBoundingClientRect();
-    console.log(body_offset);*/
+    //var viewport_height = getPageHeight();
+    //var body_offset = document.body.getBoundingClientRect().top;
+    //var body_height = document.body.getBoundingClientRect().height;
+    //var b = document.body.getBoundingClientRect();
+    //console.log(body_offset);
 
     var bg_height = 2560;
     var max_offset = bg_height - getPageHeight();
 
-    /*console.log("bg offset: " + body_offset / (body_height - viewport_height) + "px");
-    console.log("bg offset: " + b.top / (b.height - viewport_height) + "px");
-    console.log("bg offset: " + (max_offset * getPageScroll()[1]) / (getDocHeight() - getPageHeight()) + "px");*/
+    //console.log("bg offset: " + body_offset / (body_height - viewport_height) + "px");
+    //console.log("bg offset: " + b.top / (b.height - viewport_height) + "px");
+    //console.log("bg offset: " + (max_offset * getPageScroll()[1]) / (getDocHeight() - getPageHeight()) + "px");
     document.body.style.backgroundPosition = "0px " + (- max_offset * getPageScroll()[1]) / (getDocHeight() - getPageHeight()) + "px"
   });
-})
+})*/
