@@ -18,6 +18,21 @@ module Nesta
       def format_date(date)
         I18n.localize date, :format => "%d %B %Y"
       end
+
+      def sub_menu_items(level = 1)
+        ancestors = []
+        page = @page
+        while page
+          ancestors << page
+          page = page.parent
+        end
+        if ancestors.length <= level
+          return []
+        end
+        menu = Nesta::Menu.for_path(ancestors.reverse[level].abspath)
+        menu.shift
+        menu.flatten(1)
+      end
     end
 
     # Add new routes here.
@@ -26,6 +41,14 @@ module Nesta
   class Page
     def read_more
       metadata('read more') || 'Läs mer'
+    end
+  end
+
+  module Navigation
+    module Renderers
+      def breadcrumb_label(page)
+        (page.abspath == '/') ? 'Hem' : page.heading
+      end
     end
   end
 end
