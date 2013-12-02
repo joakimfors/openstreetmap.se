@@ -1,4 +1,4 @@
-- if ! @menu_items.empty?
+- @sub_menu_items = sub_menu_items
+- if ! @sub_menu_items.empty?
   %nav.categories
-    %h1 Articles by category
-    - display_menu(@menu_items, :class => "menu")
+    - display_menu(@sub_menu_items, :class => "menu", :levels => 10)
