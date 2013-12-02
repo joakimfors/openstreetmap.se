@@ -1,7 +1,8 @@
 %header.container(role="banner")
   %a{:href => "/", :title => @heading, :alt => @heading}
     %hgroup
-      %h1= @heading
-      %h2= @subtitle
-  %nav.primary.clearfix
+      %h1
+        OpenStreetMap
+        %span Sverige
+  %nav.primary
     - display_menu(@menu_items, :class => "menu", :levels => 1)
