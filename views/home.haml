@@ -1,0 +1,27 @@
+#home-map
+  :javascript
+    var map = L.map('home-map', {
+      center: [59.608, 15.375],
+      zoom: 8,
+      zoomControl: false,
+      attributionControl: false
+    });
+    L.tileLayer('http://{s}.modtile.openstreetmap.se/hydda/full/{z}/{x}/{y}.png', {
+      maxZoom: 18
+    }).addTo(map);
+
+%div.container.clearfix
+  #content.home
+    %article(role="main")
+      ~ @page.to_html(self)
+
+      %section.pages
+        = article_summaries(@page.pages)
+
+      - unless @page.articles.empty?
+        %section.articles
+          %header
+            %h1= articles_heading
+          = article_summaries(@page.articles)
+
+      = haml :page_meta, :layout => false, :locals => { :page => @page }
