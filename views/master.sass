@@ -9,12 +9,12 @@
 $container-width: 54em
 $content-width: 37em
 
-$border-style: 1px dashed $border-color
+$border-style: 1px solid $border-color
 
 $logo-height: 5 * $vertical-rhythm
 $header-margin: 3 * $vertical-rhythm
 $header-padding: 1 * $vertical-rhythm
-$header-height: $logo-height + 2 * $header-padding
+$header-height: 3 * $vertical-rhythm
 
 //
 // Reset
@@ -37,29 +37,29 @@ body
   color: $base-color
 
 header[role=banner]
-  h1,
-  h2
-    margin: 0
-    line-height: 1.2em
-    font-weight: normal
   h1
-    font-size: 327%
-    @include text-shadow
-  h2
-    color: $meta-color
-    font-size: 1em
+    margin: 0
+    line-height: $header-height
+    font-weight: 300
+    font-size: 100%
+    text-transform: lowercase
+
+    span
+      margin-left: -0.5ex
+      font-weight: bold
 
 h1, h2, h3, h4, h5, h6
   font-family: $header-fonts
+  font-weight: 300
 h1
   @include adjust-font-size($h1-scale, 0.6, 0.4)
-  font-weight: normal
+  font-weight: 300
 h2
   @include adjust-font-size($h2-scale, 1.5, 0.5)
-  font-weight: normal
+  font-weight: 300
 h3
   @include adjust-font-size($h3-scale, 1.5, 0.5)
-  font-weight: normal
+  font-weight: 300
 h4
   @include adjust-font-size($h4-scale, 2, 0)
 
@@ -89,10 +89,9 @@ img
   border: none
 
 nav.primary
-  li
-    line-height: $logo-height
   a
-    line-height: $logo-height
+    font-size: 100%
+    line-height: $header-height
 
 nav.breadcrumb
   //margin-top: $vertical-rhythm
@@ -119,50 +118,41 @@ div#container
     float: left
     padding: 1px 0
 
+  div#content.home
+    width: 100%
+
+    section
+      width: $content-width
+
   div#sidebar
     width: 12em
-    margin-left: 40em
+    margin-left: $content-width + 3em
     padding: 0 1em
 
   footer.branding
     clear: both
     color: $meta-color
-    @include adjust-font-size($base-scale)
 
     p
-      width: $content-width
+      @include adjust-font-size($base-scale)
       margin: 0
       padding: 1em 0
-
-div#header-space
-  position: relative
-  height: 2 * $header-margin + $header-height
-  margin: 0
-  padding: 0
 
 div#header
   z-index: 10
   width: 100%
-  position: absolute
-  margin-top: $header-margin
+  height: $header-height
+  position: fixed
+  padding: 0
+  margin: 0
 
 header[role=banner]
-  padding-top: $header-padding
-  padding-bottom: $header-padding
-
   hgroup
     display: block
     float: left
-    width: $logo-height
-    height: $logo-height
-    overflow: hidden
-    background-image: url("/images/osm_logo.svg")
-    background-size: $logo-height $logo-height
-    background-repeat: no-repeat
-    background-position: center
 
-    h1,h2
-      margin-left: -9999px
+div#main
+  padding-top: $header-height
 
 div#footer
   margin-top: $header-margin
@@ -170,7 +160,10 @@ div#footer
 
 div#container
   position: relative
-  //padding-top: 2 * $header-margin + $header-height
+
+div#home-map
+  width: 100%
+  height: 10 * $vertical-rhythm
 
 .container
   width: $container-width
@@ -209,11 +202,11 @@ a
 
 div.wrapper
   background: $background-color
-  @include box-shadow(rgba(0,0,0,0.2), 0, 0, 3em, 0)
+  //@include box-shadow(rgba(0,0,0,0.2), 0, 0, 3em, 0)
 
 nav.primary
   ul
-    margin: 0 0 0 2em
+    margin: 0 0 0 $vertical-rhythm
     display: block
     float: left
   li
@@ -224,7 +217,7 @@ nav.primary
       border: none
   a
     display: block
-    padding: 0 2em
+    padding: 0 $vertical-rhythm
     color: $nav-link-color
   &:hover a
     color: $link-color
@@ -267,7 +260,16 @@ article h1 a
   border-bottom: none
 
 body
-  background: fixed 0 0 $background-color url("/images/background2.jpg")
+  background: white
+
+div#header
+  background: rgb(250,250,250)
+  border-bottom: 1px solid rgb(240,240,240)
+
+header[role=banner]
+  a
+    hgroup
+      color: $header-color
 
 article
   img
@@ -286,17 +288,17 @@ article
       padding: 0
 
   footer
-    //border-top: $border-style
-    background: darken($background-color, 2%)
+    //background: darken($background-color, 2%)
     p.meta
       @include adjust-font-size(0.909, 0.1, 1.9)
       font-style: italic
+      font-weight: 300
       color: $meta-color
 
 // Pages of content
 article[role="main"]
   h1, h2
-    font-weight: bold
+    font-weight: 300
 
   div#disqus_thread
     img
@@ -339,7 +341,7 @@ nav.categories
   ul.menu
     list-style: none
     ul
-      list-style: disc
+      list-style: none
       margin: 0 0 0 1.25em
     & > ul
       @include adjust-font-size(0.909, 0, 0)
