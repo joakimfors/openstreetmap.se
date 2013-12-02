@@ -1,8 +1,17 @@
 #home-map
   :javascript
+    var highlights = [{ lat: 59.32491994, lng: 18.07076096, zoom: 17 }, // Stockholm
+                      { lat: 63.82461967, lng: 20.26376720, zoom: 14 }, // Umeå
+                      { lat: 62.39353160, lng: 17.29788780, zoom: 15 }, // Sundsvall
+                      { lat: 57.71212574, lng: 11.96775910, zoom: 15 }, // Göteborg
+                      { lat: 56.16545032, lng: 15.57085633, zoom: 18 }, // Karlskrona
+                      { lat: 55.70567701, lng: 13.19585680, zoom: 18 }  // Lund
+                     ];
+    var randLocation = highlights[Math.floor(Math.random()*highlights.length)];
+
     var map = L.map('home-map', {
-      center: [59.608, 15.375],
-      zoom: 8,
+      center: randLocation,
+      zoom: randLocation.zoom,
       zoomControl: false,
       attributionControl: false
     });
