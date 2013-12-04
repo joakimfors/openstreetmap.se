@@ -21,6 +21,38 @@
       detectRetina: true
     }).addTo(map);
 
+    var home_map_height = $('#home-map').height();
+    var home_map_expanded = false;
+    $('#home-map').after(
+      $('<div id="home-map-toggler" style="font-size: 2em; text-align: center; color: #b4b0b4; cursor: pointer;" class="entypo">&#59236;</div>').click(function() {
+        if (home_map_expanded) {
+          $('#home-map').animate(
+            {
+              'height': home_map_height
+            }, {
+              'duration': 500,
+              'done': function() {
+                $('#home-map-toggler').html('&#59236;');
+                map.invalidateSize(true);
+              }
+            });
+          home_map_expanded = false;
+        } else {
+          $('#home-map').animate(
+            {
+              'height': $(window).height() - $('#home-map-toggler').height() - $('#header').height()
+            }, {
+              'duration': 500,
+              'done': function() {
+                $('#home-map-toggler').html('&#59239;');
+                map.invalidateSize(true);
+              }
+            });
+          home_map_expanded = true;
+        }
+      })
+    );
+
 %div.container.clearfix
   #content.home
     %article(role="main")
