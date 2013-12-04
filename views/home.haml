@@ -17,7 +17,8 @@
       attributionControl: false
     });
     L.tileLayer('http://{s}.modtile.openstreetmap.se/hydda/full/{z}/{x}/{y}.png', {
-      maxZoom: 18
+      maxZoom: 18,
+      detectRetina: true
     }).addTo(map);
 
 %div.container.clearfix
