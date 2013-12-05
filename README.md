@@ -3,9 +3,7 @@
 Kräver Ruby 1.9
 
 1. Klona projektet "openstreetmap.se"
-2. Initialisera content/
-  1. git submodule init
-  2. git submodule update
+2. Klona https://github.com/joakimfors/openstreetmap.se-content.git till content/
 3. Kör "bundle install --binstubs --path vendor" (kräver att bundler redan är installert)
 4. Starta med antingen
   * bin/shotgun
