@@ -10,7 +10,7 @@
                      ];
     var randLocation = highlights[Math.floor(Math.random()*highlights.length)];
 
-    var map = L.map('home-map', {
+    var home_map = L.map('home-map', {
       center: randLocation,
       zoom: randLocation.zoom,
       zoomControl: false,
@@ -19,13 +19,16 @@
     L.tileLayer('http://{s}.modtile.openstreetmap.se/hydda/full/{z}/{x}/{y}.png', {
       maxZoom: 18,
       detectRetina: true
-    }).addTo(map);
+    }).addTo(home_map);
 
+    var home_map_zoom = L.control.zoom();
     var home_map_height = $('#home-map').height();
     var home_map_expanded = false;
+    var home_map_hash = null;
     $('#home-map').after(
       $('<div id="home-map-toggler" style="font-size: 2em; text-align: center; color: #b4b0b4; cursor: pointer;" class="entypo">&#59236;</div>').click(function() {
         if (home_map_expanded) {
+          home_map.removeControl(home_map_zoom);
           $('#home-map').animate(
             {
               'height': home_map_height
@@ -33,7 +36,9 @@
               'duration': 500,
               'done': function() {
                 $('#home-map-toggler').html('&#59236;');
-                map.invalidateSize(true);
+                home_map.invalidateSize(true);
+                home_map_hash.removeFrom(home_map);
+                location.hash = '';
               }
             });
           home_map_expanded = false;
@@ -45,13 +50,20 @@
               'duration': 500,
               'done': function() {
                 $('#home-map-toggler').html('&#59239;');
-                map.invalidateSize(true);
+                home_map.invalidateSize(true);
+                home_map_hash = new L.Hash(home_map);
+                home_map.addControl(home_map_zoom);
               }
             });
           home_map_expanded = true;
         }
       })
     );
+
+    if (location.hash.match(/#\d{1,2}\//)) {
+      $('#home-map-toggler').click();
+    }
+
 
 %div.container.clearfix
   #content.home
