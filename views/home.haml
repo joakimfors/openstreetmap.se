@@ -17,8 +17,9 @@
       zoomControl: false,
       attributionControl: false
     });
-    L.tileLayer('http://{s}.modtile.openstreetmap.se/hydda/full/{z}/{x}/{y}.png', {
+    L.tileLayer('http://{s}.tile.openstreetmap.se/hydda/full/{z}/{x}/{y}.png', {
       maxZoom: 18,
+      subdomains: 'abcdef',
       detectRetina: true
     }).addTo(home_map);
 
