@@ -33,6 +33,10 @@ module Nesta
         menu.shift
         menu.flatten(1)
       end
+
+      def articles_heading
+        @page.metadata('articles heading') || "Artiklar i #{@page.heading}"
+      end
     end
 
     # Add new routes here.
