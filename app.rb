@@ -5,6 +5,23 @@
 require 'i18n'
 require 'i18n/backend/fallbacks'
 
+module Rack
+  class Codehighlighter
+    def coderay(string)
+      lang = 'unknown'
+      refs = @opts[:pattern].match(string)  # extract language name
+      if refs
+        opts = {:line_numbers => :inline}
+        lang = refs[1]
+        str = unescape_html(string.sub(@opts[:pattern], ""))
+        "<pre class='CodeRay'>#{::CodeRay.encoder(:html).encode str, lang, opts}</pre>"
+      else
+        "<pre class='CodeRay'>#{string}</pre>"
+      end
+    end
+  end
+end
+
 module Nesta
   class App
     configure do
