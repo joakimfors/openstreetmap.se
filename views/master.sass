@@ -200,6 +200,10 @@ a
     color: $active-link-color
     border-bottom-color: $active-link-color
 
+hr
+  border: none
+  border-top: 1px solid $border-color
+
 div.wrapper
   background: $background-color
   //@include box-shadow(rgba(0,0,0,0.2), 0, 0, 3em, 0)
@@ -288,6 +292,10 @@ article
     code
       padding: 0
 
+  p.footnote
+    color: lighten($base-color, 20%)
+    font-size: 0.909 * $base-font
+
   footer
     //background: darken($background-color, 2%)
     p.meta
@@ -295,6 +303,7 @@ article
       font-style: italic
       font-weight: 300
       color: $meta-color
+
 
 // Pages of content
 article[role="main"]
