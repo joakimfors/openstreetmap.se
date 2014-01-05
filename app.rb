@@ -4,6 +4,7 @@
 
 require 'i18n'
 require 'i18n/backend/fallbacks'
+require 'json'
 
 module Rack
   class Codehighlighter
@@ -57,6 +58,21 @@ module Nesta
     end
 
     # Add new routes here.
+    post '/api/github-update-hook' do
+      content_type 'application/json'
+      return JSON.generate({:error => 'POST variable "payload" missings'}) if params[:payload].nil?
+      begin
+        payload = JSON.parse(params[:payload])
+      rescue
+        return JSON.generate({:error => 'Failed to parse payload'})
+      end
+      cmd = 'cd %s && git pull' % Nesta::Config.content
+      if payload['ref'] == 'refs/heads/master' and system(cmd)
+        JSON.generate({:result => 'Updated content'})
+      else
+        JSON.generate({:error => 'Master branch not updated'})
+      end
+    end
   end
 
   class Page
