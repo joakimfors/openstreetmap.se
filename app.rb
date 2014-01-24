@@ -60,6 +60,7 @@ module Nesta
     # Add new routes here.
     post '/api/github-update-hook' do
       content_type 'application/json'
+      # Github IP block: 192.30.252.0/22
       return JSON.generate({:error => 'POST variable "payload" missings'}) if params[:payload].nil?
       begin
         payload = JSON.parse(params[:payload])
