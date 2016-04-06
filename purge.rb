@@ -18,20 +18,24 @@ if ARGV[0] then
 end
 
 def purge(path, host, port = 80)
-  s = TCPSocket.new host, port
-
-  s.puts 'PURGE ' + path + ' HTTP/1.1'
-  s.puts 'Host: openstreetmap.se'
-  s.puts ''
-
-  while line = s.gets
-    puts line
-    if line.strip.empty? then
-      break
-    end
-  end
-
-  s.close
+#  s = TCPSocket.new host, port
+#
+#  s.puts 'PURGE ' + path + ' HTTP/1.1'
+#  s.puts 'Host: openstreetmap.se'
+#  s.puts ''
+#
+#  while line = s.gets
+#    puts line
+#    if line.strip.empty? then
+#      break
+#    end
+#  end
+#
+#  s.close
+  cmd = "curl -i -X PURGE -H 'Host: openstreetmap.se' http://127.0.0.1%s" % path
+  system(cmd)
+  cmd = "curl -i -X PURGE -H 'Host: openstreetmap.se' -k https://127.0.0.1%s" % path
+  system(cmd)
 end
 
 Nesta::Page.find_all.each do |page|
