@@ -8,20 +8,20 @@
       %meta(name="keywords" content=@keywords)
     %title= @title
     <!--[if ! lte IE 6]><!-->
-    %link(href="#{url('/css/master.css', false)}" media="screen" rel="stylesheet")
-    %link(href="#{url('/css/coderay.css', false)}" media="screen" rel="stylesheet")
-    %link(href="#{url('/leaflet-0.7.1/leaflet.css', false)}" media="screen" rel="stylesheet")
-    %script(src="/js/jquery-2.0.3.min.js")
-    %script(src="/leaflet-0.7.1/leaflet.js")
+    %link(href="#{path_to('/css/master.css')}" media="screen" rel="stylesheet")
+    %link(href="#{path_to('/css/coderay.css')}" media="screen" rel="stylesheet")
+    %link(href="#{path_to('/leaflet-0.7.7/leaflet.css')}" media="screen" rel="stylesheet")
+    %script(src="/js/jquery-2.2.3.min.js")
+    %script(src="/leaflet-0.7.7/leaflet.js")
     %script(src="/js/leaflet-hash.js")
     %script(src="/js/utils.js")
+    - local_stylesheet_link_tag('local')
     <!--<![endif]-->
     /[if lte IE 6]
-      %link(rel="stylesheet" href="//universal-ie6-css.googlecode.com/files/ie6.1.1.css" media="screen, projection")
+      %link(rel="stylesheet" href="http://universal-ie6-css.googlecode.com/files/ie6.1.1.css" media="screen, projection")
     /[if lt IE 9]
       %script(src="//html5shim.googlecode.com/svn/trunk/html5.js")
-    - local_stylesheet_link_tag('local')
-    %link(href="#{url('/articles.xml')}" rel="alternate" type="application/atom+xml")
+    %link(href="#{path_to('/articles.xml')}" rel="alternate" type="application/atom+xml")
     = haml :analytics, :layout => false
   %body
     #container

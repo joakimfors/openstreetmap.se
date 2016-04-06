@@ -9,9 +9,9 @@
         - page.categories.each do |category|
           - if category != page.categories[-1]
             = succeed ',' do
-              %a(href="#{url(category.abspath, false)}")= category.heading
+              %a(href="#{path_to(category.abspath)}")= category.link_text
           - else
-            %a(href="#{url(category.abspath, false)}")= category.heading
+            %a(href="#{path_to(category.abspath)}")= category.link_text
       - if page.metadata(:author)
         av
         = page.metadata(:author)
