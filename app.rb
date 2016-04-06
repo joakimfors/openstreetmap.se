@@ -67,7 +67,7 @@ module Nesta
       rescue
         return JSON.generate({:error => 'Failed to parse payload'})
       end
-      cmd = 'cd %s && git reset --hard origin/master' % Nesta::Config.content
+      cmd = 'cd %s && git fetch && git reset --hard origin/master' % Nesta::Config.content
       if payload['ref'] == 'refs/heads/master' and system(cmd)
         JSON.generate({:result => 'Updated content'})
       else
